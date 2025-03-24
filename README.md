@@ -24,6 +24,12 @@ This repository implements a secure client-server socket communication system us
 * **`crypto_handler.py`:**
     * Provides functions for encrypting and decrypting messages using the Ascon-128 algorithm.
     * Uses the `pyascon` library for cryptographic operations.
+* **`pyascon/`:**
+    * Contains the Python implementation of the Ascon v1.2 algorithm.
+    * **`ascon.py`:** Implements Ascon encryption, decryption, hashing, and MAC functions.
+    * **`genkat.py`:** Generates Known Answer Tests (KATs) for Ascon.
+    * **`README.md`:** README file for the `pyascon` library.
+    * **`writer.py`:** Helper code for `genkat.py` to write test vectors in text and JSON formats.
 
 ## Usage
 
@@ -36,7 +42,9 @@ This repository implements a secure client-server socket communication system us
 
 1.  **Server:**
 
+    ```bash
     python server.py <mode> <host-ip> <port>
+    ```
 
     * `<mode>`:  1 for single-key mode, 2 for dual-key mode.
     * `<host-ip>`: The IP address to host the server (e.g., `0.0.0.0` for all interfaces, `localhost` or `127.0.0.1` for local).
@@ -45,28 +53,35 @@ This repository implements a secure client-server socket communication system us
 
     Example (single-key mode, default host and port):
 
+    ```bash
     python server.py
+    ```
 
     Example (dual-key mode, specific host and port):
 
+    ```bash
     python server.py 2 192.168.1.100 5000
-   
+    ```
+
 2.  **Client:**
 
+    ```bash
     python client.py <mode> <host-ip> <port>
-
+    ```
 
     * Arguments are the same as for the server.  The client must be run with the same mode as the server.
 
     Example (single-key mode, default host and port):
 
+    ```bash
     python client.py
-   
+    ```
 
     Example (dual-key mode, specific host and port):
 
+    ```bash
     python client.py 2 192.168.1.100 5000
-
+    ```
 
 ### Important
 
@@ -76,7 +91,3 @@ This repository implements a secure client-server socket communication system us
 ## `pyascon` Library
 
 This repository includes a slightly modified version of the `pyascon` library. For detailed information about the Ascon algorithm and the `pyascon` implementation, please refer to `pyascon/README.md`.
-
-## License
-
-(You should add a license here, e.g., MIT License, Apache License 2.0, etc.  Choose the license that suits your needs.)
